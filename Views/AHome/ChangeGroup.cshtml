@@ -1,0 +1,98 @@
+﻿@model TUpdateGroupViewModel
+<!DOCTYPE html>
+<html style="font-size: 16px;">
+ <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    
+    <meta name="page_type" content="np-template-header-footer-from-plugin">
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="/css/nicepage.css" media="screen">
+    <link rel="stylesheet" href="/css/teacher_create_theme.css" media="screen">
+    <script class="u-script" type="text/javascript" src="/js/jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="/js/nicepage.js" defer=""></script>
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Didact+Gothic:400">
+    <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Didact+Gothic:400">
+    <script src="https://code.jquer y.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    
+    <meta name="theme-color" content="#9ea400">
+    <meta property="og:type" content="website">
+  </head>
+
+
+  <body>
+      @Html.Partial("HeadAdmin")
+    <article>
+        @if(Model != null)
+        {
+            <form asp-action="ChangeGroup" asp-controller="AHome" method="post">
+                    <h2 class="text-title">Редактирование группы</h2>
+                    <div class="u-border-2 u-border-palette-2-base u-line u-line-horizontal u-line-1"></div>
+                        <input type="hidden" name="course" value="@Model.course">
+                        <input type="hidden" name="group" value="@Model.group">
+                        <input type="hidden" name="isCommon" value="@Model.isCommon">
+                         <div class="grid-all">
+                            <p class="text-for-form">Название:</p>
+                            <input type="text" required name="title" value="@Model.name">
+                        </div>
+                        <p>Выделите в списке обучаемых тех, кого хотите убрать из группы.</p>
+                        @if (Model.students != null)
+                {
+                    <div class="grid-all">
+                        <p class="text-for-form">Обучаемые, состоящие в группе: </p>
+                        <select name="delStudents" multiple size="@Model.students.Count">
+                            @foreach (var student in Model.students)
+                            {
+                                <option value="@student.Id">@student.StudentName</option>
+                            }
+                        </select>
+                    </div>
+                }
+                
+                <div class="u-border-2 u-border-palette-2-base u-line u-line-horizontal u-line-1"></div>
+                @if (Model.allStudents != null)
+                {
+                    <p>Выделите в списке обучаемых тех, кого хотите зачислить на курс.</p>
+                    <div class="grid-all">
+                        <p class="text-for-form">Обучаемые, не записанные на курс: </p>
+                        <select name="newStudents" multiple size="@Model.allStudents.Count">
+                            @foreach (var student in Model.allStudents)
+                            {
+                                <option value="@student.Id">@student.StudentName</option>
+                            }
+                        </select>
+                    </div>
+                }
+
+                 @if (Model.myStudents != null)
+                {
+                    <p>Выделите в списке обучаемых тех, кого хотите зачислить в группу.</p>
+                    <div class="grid-all">
+                        <p class="text-for-form">Обучаемые, записанные на курс: </p>
+                        <select name="oldStudents" multiple size="@Model.myStudents.Count">
+                            @foreach (var student in Model.myStudents)
+                            {
+                                <option value="@student.Id">@student.StudentName</option>
+                            }
+                        </select>
+                    </div>
+                }
+
+            
+               
+                <div class="u-border-2 u-border-palette-2-base u-line u-line-horizontal u-line-1"></div>
+                <input type="submit" value="Сохранить" asp-controller="AHome" asp-action="ChangeGroup" class="u-active-palette-2-base u-border-none u-btn u-btn-round u-button-style u-hover-palette-2-light-1 u-palette-2-light-2 u-radius-5 u-btn-1 btn-to-center">
+            </form>
+        }
+    </article>
+    
+    <footer id="pageFooter" class="footer-all u-clearfix">
+        <p class="footer-text u-text-variant"> © 2022 Examcy | Образовательная платформа</p>
+    </footer>
+  </body>
+</html>

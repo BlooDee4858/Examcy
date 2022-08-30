@@ -1,0 +1,16 @@
+DECLARE FUNCTION F(n)
+ DECLARE FUNCTION G(n)
+ FUNCTION F(n)
+   IF n > 2 THEN
+     F = F(n - 1) + G(n-2)
+   ELSE
+     F = 1
+   END IF
+ END FUNCTION
+ FUNCTION G(n)
+   IF n > 2 THEN
+     G = G(n - 1) + F(n-2)
+   ELSE
+     G = 1
+   END IF
+ END FUNCTION

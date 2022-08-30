@@ -1,0 +1,187 @@
+﻿@model ТСreateCourseViewModel
+<!DOCTYPE html>
+<html style="font-size: 16px;">
+ <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    
+    <meta name="page_type" content="np-template-header-footer-from-plugin">
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/nicepage.css" media="screen">
+    <link rel="stylesheet" href="~/css/teacher_createcourse.css" media="screen">
+    <script class="u-script" type="text/javascript" src="/js/jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="/js/nicepage.js" defer=""></script>
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Didact+Gothic:400">
+    <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Didact+Gothic:400">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <meta name="theme-color" content="#9ea400">
+    <meta property="og:type" content="website">
+  </head>
+
+<body>
+    @Html.Partial("HeadTeacher")
+    <article>
+        @if(Model != null)
+        {
+            <form asp-action="CreateCourse" asp-controller="TCourses" method="post">
+                <h2 class="text-title">Конструктор курса</h2>
+                    <div class="u-border-2 u-border-palette-2-base u-line u-line-horizontal u-line-1"></div>
+                <div class="grid-all">
+                    <p class="text-for-form" style="margin-top:10px;">Название:</p>
+                    <input type="text" name="title" required style="height: 50px;">
+                </div>
+                <div class="grid-all">
+                    <p class="text-for-form" style="margin-top:10px;">Описание:</p>
+                    <textarea required type="text" name="descrip" style="min-height:50px;"></textarea>
+                </div>
+                 <div style="padding-left:165px;">
+                        <input class="radio" type="radio" id="type_C1" name="IsOpen" value="true" checked>
+                        <label for="type_C1">Открытый</label>
+                        <br>
+                        <input  class="radio" type="radio" id="type_C2" name="IsOpen" value="false">
+                        <label for="type_C2">Закрытый</label>
+                    </div>
+                    
+                    <input type="submit" value="Продолжить" asp-controller="TCourses" asp-action="CreateCourse" class="u-active-palette-2-base u-border-none u-btn u-btn-round u-button-style u-hover-palette-2-light-1 u-palette-2-light-2 u-radius-5 u-btn-1 btn-to-center" style="text-align:center">
+            </form>
+
+        }
+
+
+    </article>
+    <article></article>
+    <article></article>
+
+<footer id="pageFooter" class="footer-all u-clearfix">
+    <p class="footer-text u-text-variant"> © 2022 Examcy | Образовательная платформа</p>
+</footer>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*@model ТСreateCourseViewModel
+<!DOCTYPE html>
+<html style="font-size: 16px;">
+ <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    
+    <meta name="page_type" content="np-template-header-footer-from-plugin">
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/nicepage.css" media="screen">
+    <link rel="stylesheet" href="~/css/TcCreateCourse.css" media="screen">
+    <script class="u-script" type="text/javascript" src="/js/jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="/js/nicepage.js" defer=""></script>
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Didact+Gothic:400">
+    <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Didact+Gothic:400">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <meta name="theme-color" content="#9ea400">
+    <meta property="og:type" content="website">
+  </head>
+
+<body>
+    @Html.Partial("HeadTeacher")
+    <article></article>
+<article>
+        @if (Model != null)
+            {
+              
+                <form asp-action="CreateCourse" asp-controller="TCourses" method="post" enctype="multipart/form-data">
+                    <div @*class="Title__">
+                        <h2 class="text-title">Конструктор курса</h2>
+                        <div class="TcCreateCourse_name">
+                            <p class="TcCreateCourse_name_p">Название:</p>
+                                <input class="TcCreateCourse_name_input" name="title" type="text" style="height:50px;" required>
+                            
+                        </div>
+                        <div class="TcCreateCourse_info">
+                            <p class="TcCreateCourse_info_p">Описание:</p>
+                            <textarea class="TcCreateCourse_info_text" name = "descrip"></textarea>
+                        </div>
+                    </div>
+               
+                    <div class="CrCour_rad">
+                        <input type="radio" id="type_C1" name="IsOpen" value="true" checked>
+                        <label for="type_C1">Открытый</label>
+                        <br>
+                        <input type="radio" id="type_C2" name="IsOpen" value="false">
+                        <label for="type_C2">Закрытый</label>
+                    </div>
+                    
+@*                    <div class="TcCreateCourse_themes">
+                        @if (Model.types != null) 
+                            {
+                                <div class="TcCreateCourse_themes_sel">
+                                    <p class="TcCreateCourse_themes_p">Темы:</p>
+                                        <select class="TcCreateCourse_themes__sel" name = "tema">
+                                             @foreach (var t in Model.types)
+                                                {
+                                                    <option value="@t.Id">@t.numInEGE) @t.Title</option>
+                                                }
+                                        </select>
+                                </div>
+                            }
+                    </div>
+                        
+                <div class="btn-to-center">
+                <input type="submit" value="Продолжить" asp-controller="TCourses" asp-action="CreateCourse" class="u-active-palette-2-base u-border-none u-btn u-btn-round u-button-style u-hover-palette-2-light-1 u-palette-2-light-2 u-radius-5 u-btn-1" style="text-align:center">
+                </div>
+            </form>
+            
+        }
+</article>
+<article></article>
+<footer id="pageFooter" class="footer-all u-clearfix">
+    <p class="footer-text u-text-variant"> © 2022 Examcy | Образовательная платформа</p>
+</footer>
+</body>
+</html>
+
+
+
+
+
+*@

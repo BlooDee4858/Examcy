@@ -1,0 +1,96 @@
+﻿@model TGenerateVarViewModel
+<!DOCTYPE html>
+<html style="font-size: 16px;">
+ <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    
+    <meta name="page_type" content="np-template-header-footer-from-plugin">
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="/css/nicepage.css" media="screen">
+    <link rel="stylesheet" href="/css/teacher_add_var.css" media="screen">
+    <script class="u-script" type="text/javascript" src="/js/jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="/js/nicepage.js" defer=""></script>
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Didact+Gothic:400">
+    <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Didact+Gothic:400">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    
+    <meta name="theme-color" content="#9ea400">
+    <meta property="og:type" content="website">
+  </head>
+
+
+  <body>
+      @Html.Partial("HeadTeacher")
+    <article>
+        @if(Model != null)
+        {
+            @if(Model.themes != null)
+            {
+                @using (Html.BeginForm("GeneratedVar", "TVars", FormMethod.Post))
+                {
+                     <h2 class="text-title">Конструктор вариантов</h2>
+                    <div>
+                        <p class="text-for-form" style="margin: 0 0 0 0;">Количество вариантов:
+                        <input  required type="number" min="1" max="20" value="1" name="count"></p>
+                    </div>
+
+                     <div class="u-border-2 u-border-palette-2-base u-line u-line-horizontal u-line-1"></div>
+                         @if (Model.taskCount > 0)
+                        {
+                            @for(int i = 1; i <= Model.taskCount; i++)
+                            {
+                                <div class="grid-all">
+                                     <p class="text-for-form" style="margin-top: 10px;">Задание @i:</p>
+                                     
+                                     <select name="idTheme">
+                                         @foreach(var t in Model.themes)
+                                            {
+                                                @if (t.Num == i)
+                                        {
+                                            <option value="@t.ThemeId">@t.Title</option>
+                                        }
+                                    }
+                                      </select>
+                                      </div>
+
+                            }
+                        }
+                    <div class="u-border-2 u-border-palette-2-base u-line u-line-horizontal u-line-1"></div>
+
+
+                    <div>
+                        @if (Model.themeFlag && Model.taskFlag)
+                        {
+                            <input type="submit" value="Сгенерировать" asp-controller="TVars" asp-action="GeneratedVar" class="u-active-palette-2-base u-border-none u-btn u-btn-round u-button-style u-hover-palette-2-light-1 u-palette-2-light-2 u-radius-5 u-btn-1 btn-to-center">
+                        }
+                        else
+                        {
+                            @if(!Model.taskFlag)
+                            {
+                                <p style="text-align:center; margin: 0 0 0 0;">Вы не можете сгенерировать вариант, так как на курсе не хватает заданий следующих типов: @Model.theme. Добавьте задания к темам или создайте вариант вручную.</p>
+                            }
+                            @if (!Model.themeFlag)
+                            {
+                                <p style="text-align:center; margin: 0 0 0 0;">Вы не можете сгенерировать вариант, так как на курс добавлены не все темы. Добавьте темы или создайте вариант вручную.</p>
+                                <a href="~/TTheme/CreateTheme/@Model.courseId" class="btn-to-center u-active-palette-2-base u-border-none u-btn u-btn-round u-button-style u-hover-palette-2-light-1 u-palette-2-light-2 u-radius-5 u-btn-1">Добавить тему</a>
+                            }
+                            <a href="~/TVars/CreateVar/@Model.courseId" class="btn-to-center u-active-palette-2-base u-border-none u-btn u-btn-round u-button-style u-hover-palette-2-light-1 u-palette-2-light-2 u-radius-5 u-btn-1">Создать вариант вручную</a>
+                           }
+                    </div>
+               }
+            }
+        }
+    </article>
+    
+    <footer id="pageFooter" class="footer-all u-clearfix">
+        <p class="footer-text u-text-variant"> © 2022 Examcy | Образовательная платформа</p>
+    </footer>
+  </body>
+</html>

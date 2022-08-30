@@ -1,0 +1,11 @@
+var s, n: integer;
+begin
+    s := 42;
+    n := 1;
+    while s > 0 do
+    begin
+        s := s – 5;
+        n := n + 3
+    end;
+    writeln(n)
+end.

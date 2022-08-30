@@ -1,0 +1,97 @@
+﻿@model StTaskViewModel
+<!DOCTYPE html>
+<html style="font-size: 16px;">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+
+    <meta name="keywords" content="Статистика">
+    <meta name="description" content="">
+    <meta name="page_type" content="np-template-header-footer-from-plugin">
+
+    <title>@ViewBag.Title</title>
+
+    <link rel="stylesheet" href="/css/nicepage.css" media="screen">
+    <link rel="stylesheet" href="/css/student.css" media="screen">
+    <link rel="stylesheet" href="/css/task.css" media="screen">
+    <link rel="stylesheet" href="/css/notification.css" media="screen" />
+
+    <script class="u-script" type="text/javascript" src="/js/jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="/js/nicepage.js" defer=""></script>
+
+    <meta name="generator" content="Nicepage 4.5.4, nicepage.com">
+
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Didact+Gothic:400">
+    <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Didact+Gothic:400">
+    
+    <meta name="theme-color" content="#9ea400">
+    <meta property="og:title" content="Задание">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="website">
+  </head>
+  <body class="u-body u-xl-mode" id="body">
+    @Html.Partial("HeadStudent")
+    
+    <article>
+        @if(Model != null)
+        {
+            @if(Model.task != null && Model.isOneTask)
+            {
+                @using (Html.BeginForm("Index", "StTask", FormMethod.Post))
+                {
+                    <div class="worksection u-align-center">
+                        <div class="task-info" id="task-info">
+                            <h2 class="text-title">Задание №@Model.task.Id</h2>
+                            <h4 class="text">Тема: @Model.task.Title</h4>
+                            <div class="u-border-2 u-border-palette-2-base u-line u-line-horizontal u-line-1"></div>
+                            <h6 class="task-text">@Model.task.Text</h6>
+                            <div class="task-detail" id="task-detail">
+                                <input type="submit" onclick="check_task" value="Сохранить" class="u-active-palette-2-base u-border-none u-btn u-btn-round u-button-style u-hover-palette-2-light-1 u-palette-2-light-2 u-radius-5 u-btn-1">
+                            </div>
+                            
+                            <input type="hidden" name="TaskTitle"  id="TaskTitle" value="@Model.task_type">
+                            <input type="hidden" name="TaskDetail"  id="TaskDetail" value="@Model.task_detail">
+                            <input type="hidden" name="Aswer"  id="Aswer" value="@Model.task.Id">
+                            <input type="hidden" name="TaskResult"  id="TaskResult" value="@Model.Answer">
+
+                            <input type="hidden" name="TaskID" value="@Model.task.Id">
+                            <input type="hidden" name="StartTime" value="@Model.startTime">
+                            <!--asp-controller="StTaskController" asp-action="SolveTask"-->
+                            
+                        </div>
+
+                        <div class="editor" id="editor">
+                            <canvas id="editor_canvas" width="512" height="512" class="cv" style="width: 512px; height: 512px;">
+                    
+                            </canvas>
+                    
+                            <button style="padding:0; " id="txt" onclick="text()"></button>
+
+                            <label onclick="show_info('control-info')" class="param-button">Управление</label>
+                            <div class="control-info" id="control-info" style="display: none">
+                                <p>Нажатая левая кнопка мыши: переместить</p>
+                                <p>Дважды нажатая левая кнопка мыши: добавить или удалить ребро</p>
+                                <p>Правая кнопка мыши: добавить или удалить вершину</p>
+                            </div>
+                        </div>
+                     </div>
+                     
+                }
+            }
+        }
+    </article>
+    
+    
+    <footer id="pageFooter" class="footer-all u-clearfix">
+        <p class="footer-text u-text-variant"> © 2022 Examcy | Образовательная платформа</p>
+    </footer>
+
+    <script src="/js/task.js"></script>
+    <script src="/js/notification.js"></script>
+    <script language="javascript">
+        if("@Model.JavascriptToRun[0]" != ""){
+            window.onload = function() {createNotification("@Model.JavascriptToRun[0]", "@Model.JavascriptToRun[1]")};
+        }
+    </script>
+  </body>
+</html>

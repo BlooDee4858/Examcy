@@ -1,0 +1,194 @@
+﻿@model TGroupViewModel
+<!DOCTYPE html>
+<html style="font-size: 16px;">
+ <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    
+    <meta name="pleft" content="np-template-header-footer-from-plugin">
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="/css/nicepage.css" media="screen">
+    <link rel="stylesheet" href="/css/teacher_forms_for_list_task.css" media="screen">
+    <script class="u-script" type="text/javascript" src="/js/jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="/js/nicepage.js" defer=""></script>
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Didact+Gothic:400">
+    <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Didact+Gothic:400">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    
+    <meta name="theme-color" content="#9ea400">
+    <meta property="og:type" content="website">
+  </head>
+
+
+  <body>
+      @Html.Partial("HeadTeacher")
+      <article></article>
+      <article>
+          @if (Model != null)
+        {
+            @if (Model.courses != null)
+            {
+                @foreach (var course in Model.courses)
+                {
+                    <h2 class="text-title">@course.Title <a name="@course.Id"></a></h2>
+                    <a href="/TGroup/CreateGroup/@course.Id" class="btn-to-center u-active-palette-2-base u-border-none u-btn u-btn-round u-button-style u-hover-palette-2-light-1 u-palette-2-light-2 u-radius-5 u-btn-1 button">Создать группу</a>
+                    @if(course.allCount != 0)
+                    {
+                        bool flag = false;
+                        <nav>
+                      <div class="nav nav-tabs" role="tablist">
+                          @foreach(var group in Model.groups)
+                                {
+                                    @if(group.CourseId == course.Id)
+                                    {
+                                        @if (!flag)
+                                        {
+                                            <button class="nav-link active" id="nav-all-tab-@course.Id-@group.Id" data-bs-toggle="tab" data-bs-target="#nav-all-@course.Id-@group.Id" type="button" role="tab" aria-controls="nav-all-@course.Id-@group.Id" aria-selected="true">@group.Name</button>
+                                            flag = true;
+                                        }
+                                        else
+                                        {
+                                            <button class="nav-link" id="nav-all-tab-@course.Id-@group.Id" data-bs-toggle="tab" data-bs-target="#nav-all-@course.Id-@group.Id" type="button" role="tab" aria-controls="nav-all-@course.Id-@group.Id" aria-selected="false">@group.Name</button>
+
+
+                                        }
+                                    }
+
+                                }
+                      </div>
+                    </nav>
+                    <div class="tab-content" id="nav-tabContent">
+                        
+                     @foreach(var group in Model.groups)
+                                {
+                                    @if(group.CourseId == course.Id)
+                                    {
+                                        @if (flag)
+                                        {
+                                            <div class="tab-pane fade show active" id="nav-all-@course.Id-@group.Id" role="tabpanel" aria-labelledby="nav-all-tab-@course.Id-@group.Id">
+                        @if (group.countStudent != 0 && Model.students != null)
+                        {
+                            <div class="task-list">
+                                <table style="width: 100%">
+                                    <colgroup>
+                                        <col width="70%">
+                                        @*<col width="25%">*@
+                                        <col width="30%">
+                                    </colgroup>
+                                    <tbody class="u-table-alt-palette-2-light-3">
+                                        <tr>
+                                            <td class="u-table-cell">Обучаемый</td>
+                                            @*<td class="u-table-cell"></td>*@
+                                            <td class="u-table-cell"></td>
+                                        </tr>
+                                        @foreach (var student in Model.students)
+                                        {
+                                            @if (student.groupId == group.Id)
+                                            {
+                                                <tr>
+                                                    <td class="u-table-cell">@student.StudentName</td>
+                                                    @*<td class="u-table-cell"><a href="/TGroup/MoveToGroup/@student.Id">Перевести в другую группу</a></td>*@
+                                                    <td class="u-table-cell"> <a href="/TGroup/DeleteStudentFromGroup/@student.Id">Убрать с курса</a></td>
+                                                </tr>
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        }
+                        else
+                        {
+                            <p class="text-to-center">В этой группе пока нет ни одного обучаемого.</p>
+                        }
+                        <a href="/TGroup/UpdateGroup/@group.Id" class="btn-to-center u-active-palette-2-base u-border-none u-btn u-btn-round u-button-style u-hover-palette-2-light-1 u-palette-2-light-2 u-radius-5 u-btn-1 button">Редактировать группу</a>
+                      </div>
+
+                                            flag = false;
+                                        }
+                                        else
+                                        {
+                                            <div class="tab-pane fade" id="nav-all-@course.Id-@group.Id" role="tabpanel" aria-labelledby="nav-all-tab-@course.Id-@group.Id">
+                        @if (group.countStudent != 0 && Model.students != null)
+                        {
+                            <div class="task-list">
+                                <table style="width: 100%">
+                                    <colgroup>
+                                        <col width="70%">
+                                        @*<col width="25%">*@
+                                        <col width="30%">
+                                    </colgroup>
+                                    <tbody class="u-table-alt-palette-2-light-3">
+                                        <tr>
+                                            <td class="u-table-cell">Обучаемый</td>
+                                           @* <td class="u-table-cell"></td>*@
+                                            <td class="u-table-cell"></td>
+                                        </tr>
+                                        @foreach (var student in Model.students)
+                                        {
+                                            @if (student.groupId == group.Id)
+                                            {
+                                                <tr>
+                                                    <td class="u-table-cell">@student.StudentName</td>
+                                                    @*<td class="u-table-cell"><a href="/TGroup/MoveToGroup/@student.Id">Перевести в другую группу</a></td>*@
+                                                    <td class="u-table-cell"> <a href="/TGroup/DeleteStudentFromGroup/@student.Id">Убрать с курса</a></td>
+                                                </tr>
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        }
+                        else
+                        {
+                            <p class="text-to-center">В этой группе пока нет ни одного обучаемого.</p>
+                        }
+                        <a href="/TGroup/UpdateGroup/@group.Id" class="btn-to-center u-active-palette-2-base u-border-none u-btn u-btn-round u-button-style u-hover-palette-2-light-1 u-palette-2-light-2 u-radius-5 u-btn-1 button">Редактировать группу</a>
+</div>
+
+                                        }
+                                    }
+
+                                }
+                          </div>
+
+                    }
+                }
+            }
+
+        }
+        else
+        {
+            <div style = "text-align: center;">
+                    <h2>Список групп</h2>
+                </div>
+            <p class="text-to-center">У вас пока нет групп. Чтобы создать группу, добавьте курс.</p>
+            <a href="TCourses/CreateCourse" class="btn-to-center u-active-palette-2-base u-border-none u-btn u-btn-round u-button-style u-hover-palette-2-light-1 u-palette-2-light-2 u-radius-5 u-btn-1 button button">Создать курс</a>
+        }
+    </article>
+    <ads style="border-left: 0.5px solid #534a6a">
+        @if(Model != null)
+        {
+            @if (Model.courses != null)
+            {
+                <h5 class="right-title">Курсы</h5>
+                <ul style="list-style-type:none;">
+                    @foreach(var course in Model.courses)
+                    {
+                        <li><a href="#@course.Id">@course.Title</a></li>
+                    }
+                    </ul>
+            }
+        }
+    </ads>    
+    <footer id="pageFooter" class="footer-all u-clearfix">
+        <p class="footer-text u-text-variant"> © 2022 Examcy | Образовательная платформа</p>
+    </footer>
+  </body>
+</html>

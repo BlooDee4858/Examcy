@@ -1,0 +1,491 @@
+﻿@model StRatingViewModel
+<!DOCTYPE html>
+<html style="font-size: 16px;">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    
+    <meta name="page_type" content="np-template-header-footer-from-plugin">
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="/css/nicepage.css" media="screen">
+    <link rel="stylesheet" href="/css/student_rating.css" media="screen">
+    <script class="u-script" type="text/javascript" src="/js/jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="/js/nicepage.js" defer=""></script>
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Didact+Gothic:400">
+    <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Didact+Gothic:400">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    @*<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">*@
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+ 
+    <meta name="theme-color" content="#9ea400">
+    <meta property="og:type" content="website">
+  </head>
+
+
+<body>
+@Html.Partial("HeadStudent")
+<article></article>
+
+<article>
+
+    
+    <h2 class="text-title">Рейтинг</h2>
+    @*<section>
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Общий рейтинг</a>
+                <table class="u-table-entity">
+                    <colgroup>
+                      <col width="30.4%">
+                      <col width="300.4%">
+                      <col width="39.2%">
+                    </colgroup>
+                    <tbody class="u-table-alt-grey-5 u-table-body">
+                      <tr style="height: 47px;">
+                        <td class="u-table-cell">Место</td>
+                        <td class="u-table-cell">Студент</td>
+                        <td class="u-table-cell">Опыт</td>
+                      </tr>
+                      @foreach (var l in Model.ratings){
+                      <tr style="height: 51px;">
+                        <td class="u-table-cell">@l.number</td>
+                        <td class="u-table-cell">@l.LastName @l.FirstName</td>
+                        <td class="u-table-cell">@l.ExpTestVar</td>
+                      </tr>
+                      }
+                    </tbody>
+                  </table>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Тестовый вариант</a>
+                <table class="u-table-entity">
+                    <colgroup>
+                      <col width="30.4%">
+                      <col width="30.4%">
+                      <col width="39.2%">
+                    </colgroup>
+                    <tbody class="u-table-alt-grey-5 u-table-body">
+                      <tr style="height: 47px;">
+                        <td class="u-table-cell">Место</td>
+                        <td class="u-table-cell">Студент</td>
+                        <td class="u-table-cell">Опыт</td>
+                      </tr>
+                      @foreach (var l in Model.ratings){
+                      <tr style="height: 51px;">
+                        <td class="u-table-cell">@l.number</td>
+                        <td class="u-table-cell">@l.LastName @l.FirstName</td>
+                        <td class="u-table-cell">@l.ExpTestVar</td>
+                      </tr>
+                      }
+                    </tbody>
+                  </table>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Посещаемость</a>
+                <table class="u-table-entity">
+                    <colgroup>
+                      <col width="30.4%">
+                      <col width="30.4%">
+                      <col width="39.2%">
+                    </colgroup>
+                    <tbody class="u-table-alt-grey-5 u-table-body">
+                      <tr style="height: 47px;">
+                        <td class="u-table-cell">Место</td>
+                        <td class="u-table-cell">Студент</td>
+                        <td class="u-table-cell">Количество дней</td>
+                      </tr>
+                      @foreach (var l in Model.ratings){
+                      <tr style="height: 51px;">
+                        <td class="u-table-cell">@l.number</td>
+                        <td class="u-table-cell">@l.LastName @l.FirstName</td>
+                        <td class="u-table-cell">@l.Visitors</td>
+                      </tr>
+                      }
+                    </tbody>
+                  </table>
+            </li>
+        </ul>
+    </section>*@
+    <section>
+        @*<nav>
+          <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Главная</button>
+            <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Профиль</button>
+            <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Контакт</button>
+          </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+          <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">1</div>
+          <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">2</div>
+          <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">3</div>
+        </div>*@
+       
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+
+              <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#allraiting" type="button" role="tab" aria-controls="home" aria-selected="true">Общий рейтинг</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#testraiting" type="button" role="tab" aria-controls="profile" aria-selected="false">Тестовый вариант</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#visitors" type="button" role="tab" aria-controls="contact" aria-selected="false">Посещаемость</button>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="allraiting" role="tabpanel" aria-labelledby="home-tab">
+                    @if (@Model.allratings.Count != 0)
+                    {
+                        <div class="u-align-center u-container-style u-group u-group-1">
+                            <div class="u-container-layout">
+                                <span ><img src="~/img/11.png" width="100" height="100" alt=""></span>
+                                @if (@Model.n_allraiting == 0)
+                                {
+                                    <h4 align="center">Поздравляю! Вы достигли вершины!</h4>
+                                }
+                                else
+                                {
+                                    <h4 align="center">@Model.n_allraiting осталось до вершины</h4>
+                                }
+                            </div>
+                        </div>
+
+
+                        <table class="u-table-entity">
+                            <colgroup>
+                                <col width="30.4%">
+                                <col width="200.4%">
+                                <col width="39.2%">
+                            </colgroup>
+                            <tbody class="u-table-alt-grey-5 u-table-body">
+                                <tr style="height: 47px;">
+                                    <td class="u-table-cell">Место</td>
+                                    <td class="u-table-cell">Студент</td>
+                                    <td class="u-table-cell">Опыт</td>
+                                </tr>
+                                @foreach (var l in Model.allratings)
+                                {
+                                    @if (@l.ExpAll > Model.first_allraiting)
+                                    {
+                                        <tr style="height: 51px; background-color:#adf5ab">
+                                            <td class="u-table-cell">@l.numberAllRairing</td>
+                                            <td class="u-table-cell">@l.LastName @l.FirstName</td>
+                                            <td class="u-table-cell">@l.ExpAll</td> <!--общий рейтинг за курс-->
+                                        </tr>
+                                    }
+                                    @if (@l.ExpAll >= Model.second_allraiting && @l.ExpAll <= Model.first_allraiting)
+                                    {
+                                        <tr style="height: 51px; background-color:#fff48c">
+                                            <td class="u-table-cell">@l.numberAllRairing</td>
+                                            <td class="u-table-cell">@l.LastName @l.FirstName</td>
+                                            <td class="u-table-cell">@l.ExpAll</td> <!--общий рейтинг за курс-->
+                                        </tr>
+                                    }
+                                    @if (@l.ExpAll != 0 && @l.ExpAll < Model.second_allraiting)
+                                    {
+                                        <tr style="height: 51px; background-color:#fcc572">
+                                            <td class="u-table-cell">@l.numberAllRairing</td>
+                                            <td class="u-table-cell">@l.LastName @l.FirstName</td>
+                                            <td class="u-table-cell">@l.ExpAll</td> <!--общий рейтинг за курс-->
+                                        </tr>
+                                    }
+                                    @if (@l.ExpAll == 0)
+                                    {
+                                        <tr style="height: 51px; background-color:#fc8b83">
+                                            <td class="u-table-cell">@l.numberAllRairing</td>
+                                            <td class="u-table-cell">@l.LastName @l.FirstName</td>
+                                            <td class="u-table-cell">@l.ExpAll</td> <!--общий рейтинг за курс-->
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    }
+                    else
+                    {
+                        <p style="text-align:center;">Для данного курса пока что нет рейтинга</p>   
+                    }
+                </div>
+                    
+            <div class="tab-pane fade" id="testraiting" role="tabpanel" aria-labelledby="profile-tab">
+                    @if (Model.idVar != 0)
+                    {
+                        <a href="~/StVar/Rating/@Model.idVar" style="padding: 10px 0px; role="button" >
+                            <p align="right">
+                                Тестовый вариант 
+                            </p>
+                        </a>
+
+                        <div class="u-align-center u-container-style u-group u-group-1">
+                            <div class="u-container-layout">
+                                <span ><img src="~/img/11.png" width="100" height="100" alt=""></span>
+                                @if (@Model.n_testraiting == 0)
+                                {
+                                    <h4 align="center">Поздравляю! Вы достигли вершины!</h4>
+                                }
+                                else
+                                {
+                                    <h4 align="center">@Model.n_testraiting осталось до вершины</h4>
+                                }
+                            </div>
+                        </div>
+
+                        <table class="u-table-entity">
+                            <colgroup>
+                                <col width="30.4%">
+                                <col width="200.4%">
+                                <col width="39.2%">
+                            </colgroup>
+                            <tbody class="u-table-alt-grey-5 u-table-body">
+                                <tr style="height: 47px;">
+                                    <td class="u-table-cell">Место</td>
+                                    <td class="u-table-cell">Студент</td>
+                                    <td class="u-table-cell">Баллы</td>
+                                </tr>
+                                @foreach (var l in Model.testratings)
+                                {
+                                    @if (@l.ExpTestVar > Model.first_testraiting)
+                                    {
+                                        <tr style="height: 51px; background-color:#adf5ab">
+                                            <td class="u-table-cell">@l.numberTestRairing</td>
+                                            <td class="u-table-cell">@l.LastName @l.FirstName</td>
+                                            <td class="u-table-cell">@l.ExpTestVar</td> <!--общий рейтинг за курс-->
+                              </tr>
+                                    }
+                                    @if (@l.ExpTestVar >= Model.second_testraiting && @l.ExpTestVar <= Model.first_testraiting && @l.ExpTestVar!=0)
+                                    {
+                                        <tr style="height: 51px; background-color:#fff48c">
+                                            <td class="u-table-cell">@l.numberTestRairing</td>
+                                            <td class="u-table-cell">@l.LastName @l.FirstName</td>
+                                            <td class="u-table-cell">@l.ExpTestVar</td> <!--общий рейтинг за курс-->
+                              </tr>
+                                    }
+                                    @if (@l.ExpTestVar != 0 && @l.ExpTestVar < Model.second_testraiting)
+                                    {
+                                        <tr style="height: 51px; background-color:#fcc572">
+                                            <td class="u-table-cell">@l.numberTestRairing</td>
+                                            <td class="u-table-cell">@l.LastName @l.FirstName</td>
+                                            <td class="u-table-cell">@l.ExpTestVar</td> <!--общий рейтинг за курс-->
+                              </tr>
+                                    }
+                                    @if (@l.ExpTestVar == 0)
+                                    {
+                                        <tr style="height: 51px; background-color:#fc8b83">
+                                            <td class="u-table-cell">@l.numberTestRairing</td>
+                                            <td class="u-table-cell">@l.LastName @l.FirstName</td>
+                                            <td class="u-table-cell">@l.ExpTestVar</td> <!--общий рейтинг за курс-->
+                              </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    }
+                    else
+                    {
+                        <p style="text-align:center;">Для данного курса нет рейтинга по тестовому варианту.</p>
+                    }
+                </div>
+            <div class="tab-pane fade" id="visitors" role="tabpanel" aria-labelledby="contact-tab">
+                    @if (@Model.visitors.Count != 0)
+                    {
+                        <div class="u-align-center u-container-style u-group u-group-1">
+                            <div class="u-container-layout">
+                                <span ><img src="~/img/11.png" width="100" height="100" alt=""></span>
+                                @if (@Model.n_visitors == 0)
+                                {
+                                    <h4 align="center">Поздравляю! Вы достигли вершины!</h4>
+                                }
+                                else
+                                {
+                                    <h4 align="center">@Model.n_visitors осталось до вершины</h4>
+                                }
+                            </div>
+                        </div>
+
+                        <table class="u-table-entity">
+                            <colgroup>
+                                <col width="30.4%">
+                                <col width="200.4%">
+                                <col width="39.2%">
+                            </colgroup>
+                            <tbody class="u-table-alt-grey-5 u-table-body">
+                                <tr style="height: 47px;">
+                                    <td class="u-table-cell">Место</td>
+                                    <td class="u-table-cell">Студент</td>
+                                    <td class="u-table-cell">Количество дней</td>
+                                </tr>
+                                @foreach (var l in Model.visitors)
+                                {
+                                    @if (@l.Visitors > Model.first_visitors)
+                                    {
+                                        <tr style="height: 51px; background-color:#adf5ab">
+                                            <td class="u-table-cell">@l.numberVisitorsRairing</td>
+                                            <td class="u-table-cell">@l.LastName @l.FirstName</td>
+                                            <td class="u-table-cell">@l.Visitors</td> <!--общий рейтинг за курс-->
+                                        </tr>
+                                    }
+                                    @if (@l.Visitors > Model.second_visitors && @l.Visitors <= Model.first_visitors)
+                                    {
+                                        <tr style="height: 51px; background-color:#fff48c">
+                                            <td class="u-table-cell">@l.numberVisitorsRairing</td>
+                                            <td class="u-table-cell">@l.LastName @l.FirstName</td>
+                                            <td class="u-table-cell">@l.Visitors</td> <!--общий рейтинг за курс-->
+                                        </tr>
+                                    }
+                                    @if (@l.Visitors != 0 && @l.Visitors <= Model.second_visitors)
+                                    {
+                                        <tr style="height: 51px; background-color:#fcc572">
+                                            <td class="u-table-cell">@l.numberVisitorsRairing</td>
+                                            <td class="u-table-cell">@l.LastName @l.FirstName</td>
+                                            <td class="u-table-cell">@l.Visitors</td> <!--общий рейтинг за курс-->
+                                        </tr>
+                                    }
+                                    @if (@l.Visitors == 0)
+                                    {
+                                        <tr style="height: 51px; background-color:#fc8b83">
+                                            <td class="u-table-cell">@l.numberVisitorsRairing</td>
+                                            <td class="u-table-cell">@l.LastName @l.FirstName</td>
+                                            <td class="u-table-cell">@l.Visitors</td> <!--общий рейтинг за курс-->
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    }
+                    else
+                    {
+                         <p style="text-align:center;">Для данного курса пока что нет рейтинга</p>
+                    }
+                </div>
+        </div>
+    </section>
+    @*<section class="u-align-center u-clearfix u-palette-2-light-3 u-section-2" id="sec-9bd6">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <div class="u-expanded-width u-tab-links-align-left u-tabs u-tabs-1">
+          <ul class="u-border-2 u-border-palette-1-base u-spacing-10 u-tab-list u-unstyled" role="tablist">
+            <li class="u-tab-item" role="presentation">
+              <a class="active u-active-palette-1-base u-button-style u-grey-10 u-tab-link u-text-active-white u-text-black u-tab-link-1" id="link-tab-0da5" href="#tab-0da5" role="tab" aria-controls="tab-0da5" aria-selected="true">Общий за курс</a>
+            </li>
+            <li class="u-tab-item" role="presentation">
+              <a class="u-active-palette-1-base u-button-style u-grey-10 u-tab-link u-text-active-white u-text-black u-tab-link-2" id="link-tab-14b7" href="#tab-14b7" role="tab" aria-controls="tab-14b7" aria-selected="false">Тестовый вариант</a>
+            </li>
+            <li class="u-tab-item" role="presentation">
+              <a class="u-active-palette-1-base u-button-style u-grey-10 u-tab-link u-text-active-white u-text-black u-tab-link-3" id="link-tab-2917" href="#tab-2917" role="tab" aria-controls="tab-2917" aria-selected="false">Посещаемость</a>
+            </li>
+          </ul>
+          <div class="u-tab-content">
+            <div class="u-container-style u-tab-active u-tab-pane u-white u-tab-pane-1" id="tab-0da5" role="tabpanel" aria-labelledby="link-tab-0da5">
+              <div class="u-container-layout u-container-layout-1">
+                <div class="u-align-center u-container-style u-group u-group-1">
+                  <div class="u-container-layout"><span class="u-file-icon u-icon u-text-palette-2-base u-icon-1"><img src="img/11.png" alt=""></span>
+                    <h4 class="u-text u-text-default u-text-1">N осталось до вершины</h4>
+                  </div>
+                </div>
+                <div class="u-expanded-width u-table u-table-responsive u-table-1">
+                  <table class="u-table-entity">
+                    <colgroup>
+                      <col width="30.4%">
+                      <col width="30.4%">
+                      <col width="39.2%">
+                    </colgroup>
+                    <tbody class="u-table-alt-grey-5 u-table-body">
+                      <tr style="height: 47px;">
+                        <td class="u-table-cell">Место</td>
+                        <td class="u-table-cell">Студент</td>
+                        <td class="u-table-cell">Опыт</td>
+                      </tr>
+                      @foreach (var l in Model.ratings){
+                      <tr style="height: 51px;">
+                        <td class="u-table-cell">@l.number</td>
+                        <td class="u-table-cell">@l.LastName @l.FirstName</td>
+                        <td class="u-table-cell">@l.ExpWeek</td>
+                      </tr>
+                      }
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            @*<div class="u-container-style u-tab-active u-tab-pane u-white u-tab-pane-2" id="tab-0da5" role="tabpanel" aria-labelledby="link-tab-0da5">
+              <div class="u-container-layout u-container-layout-2">
+                <div class="u-align-center u-container-style u-group u-group-2">
+                  <div class="u-container-layout"><span class="u-file-icon u-icon u-text-palette-2-base u-icon-2"><img src="img/11.png" alt=""></span>
+                    <h4 class="u-text u-text-default u-text-1">N осталось до вершины</h4>
+                  </div>
+                </div>
+                <div class="u-expanded-width u-table u-table-responsive u-table-1">
+                  <table class="u-table-entity">
+                    <colgroup>
+                      <col width="30.4%">
+                      <col width="30.4%">
+                      <col width="39.2%">
+                    </colgroup>
+                    <tbody class="u-table-alt-grey-5 u-table-body">
+                      <tr style="height: 47px;">
+                        <td class="u-table-cell">Место</td>
+                        <td class="u-table-cell">Студент</td>
+                        <td class="u-table-cell">Опыт</td>
+                      </tr>
+                      @foreach (var l in Model.ratings){
+                      <tr style="height: 51px;">
+                        <td class="u-table-cell">@l.number</td>
+                        <td class="u-table-cell">@l.LastName @l.FirstName</td>
+                        <td class="u-table-cell">@l.ExpTestVar</td>
+                      </tr>
+                      }
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="u-container-style u-tab-active u-tab-pane u-white u-tab-pane-1" id="tab-0da5" role="tabpanel" aria-labelledby="link-tab-0da5">
+              <div class="u-container-layout u-container-layout-1">
+                <div class="u-align-center u-container-style u-group u-group-1">
+                  <div class="u-container-layout"><span class="u-file-icon u-icon u-text-palette-2-base u-icon-1"><img src="img/11.png" alt=""></span>
+                    <h4 class="u-text u-text-default u-text-1">N осталось до вершины</h4>
+                  </div>
+                </div>
+                <div class="u-expanded-width u-table u-table-responsive u-table-1">
+                  <table class="u-table-entity">
+                    <colgroup>
+                      <col width="30.4%">
+                      <col width="30.4%">
+                      <col width="39.2%">
+                    </colgroup>
+                    <tbody class="u-table-alt-grey-5 u-table-body">
+                      <tr style="height: 47px;">
+                        <td class="u-table-cell">Место</td>
+                        <td class="u-table-cell">Студент</td>
+                        <td class="u-table-cell">Опыт</td>
+                      </tr>
+                      @foreach (var l in Model.ratings){
+                      <tr style="height: 51px;">
+                        <td class="u-table-cell">@l.number</td>
+                        <td class="u-table-cell">@l.LastName @l.FirstName</td>
+                        <td class="u-table-cell">@l.Visitors</td>
+                      </tr>
+                      }
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>*@
+    
+</article>
+<article></article>
+
+  <footer id="pageFooter" class="footer-all u-clearfix">
+    <p class="footer-text u-text-variant"> © 2022 Examcy | Образовательная платформа</p>
+  </footer>
+</body>
+</html>

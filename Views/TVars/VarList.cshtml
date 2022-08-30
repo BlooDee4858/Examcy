@@ -1,0 +1,224 @@
+﻿@model TVarListViewModel
+<!DOCTYPE html>
+<html style="font-size: 16px;">
+ <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    
+    <meta name="page_type" content="np-template-header-footer-from-plugin">
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="/css/nicepage.css" media="screen">
+    <link rel="stylesheet" href="/css/teacher_var_list.css" media="screen">
+    <script class="u-script" type="text/javascript" src="/js/jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="/js/nicepage.js" defer=""></script>
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Didact+Gothic:400">
+    <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Didact+Gothic:400">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    
+    <meta name="theme-color" content="#9ea400">
+    <meta property="og:type" content="website">
+  </head>
+
+
+  <body>
+      @Html.Partial("HeadTeacher")
+      <article></article>
+      <article>
+          @if (Model != null)
+        {
+            @if (Model.courses != null)
+            {
+                @foreach (var course in Model.courses)
+                {
+                    <h2 class="text-title">@course.Title <a name="@course.Id"></a></h2>
+
+                    <nav>
+                      <div class="nav nav-tabs" role="tablist">
+                        <button class="nav-link active" id="nav-all-tab-@course.Id" data-bs-toggle="tab" data-bs-target="#nav-all-@course.Id" type="button" role="tab" aria-controls="nav-all-@course.Id" aria-selected="true">Все</button>
+                        <button class="nav-link" id="nav-assigned-tab-@course.Id" data-bs-toggle="tab" data-bs-target="#nav-assigned-@course.Id" type="button" role="tab" aria-controls="nav-assigned-@course.Id" aria-selected="false">Назначенные</button>
+                        <button class="nav-link" id="nav-solved-tab-@course.Id" data-bs-toggle="tab" data-bs-target="#nav-solved-@course.Id" type="button" role="tab" aria-controls="nav-solved-@course.Id" aria-selected="false">Решенные</button>
+                      </div>
+                    </nav>
+                    <div class="tab-content" id="nav-tabContent">
+                      <div class="tab-pane fade show active" id="nav-all-@course.Id" role="tabpanel" aria-labelledby="nav-all-tab-@course.Id">
+                        @if (course.allCount != 0)
+                        {
+                            <div class="task-list">
+                                <table style="width: 100%">
+                                    <colgroup>
+                                        <col width="20%">
+                                        <col width="20%">
+                                        <col width="20%">
+                                        <col width="20%">
+                                        <col width="20%">
+                                    </colgroup>
+                                    <tbody class="u-table-alt-palette-2-light-3">
+                                        <tr>
+                                            <td class="u-table-cell">Номер</td>
+                                            <td class="u-table-cell"></td>
+                                            <td class="u-table-cell"></td>
+                                            <td class="u-table-cell"></td>
+                                            <td class="u-table-cell"></td>
+                                        </tr>
+                                        @foreach (var var in Model.allVars)
+                                        {
+                                            @if (var.CourseId == course.Id)
+                                            {
+                                                <tr>
+                                                    <td class="u-table-cell">@var.Id</td>
+                                                    <td class="u-table-cell"> <a href="/TVars/Index/@var.Id">Посмотреть</a></td>
+
+                                                    <td class="u-table-cell">
+                                                        <a href="/TVars/AssignVar/@var.Id">Назначить</a>
+                                                    </td>
+                                                    <td class="u-table-cell">
+                                                        <a href="/TVars/UpdateVar/@var.Id">Редактировать</a>
+                                                    </td>
+                                                    <td class="u-table-cell">
+                                                        <a href="/TVars/DeleteVar/@var.Id">Удалить</a>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        }
+                        else
+                        {
+                            <p class="text-to-center">Для этого курса пока не добавлен ни один вариант.</p>
+                        }
+                        <a href="/TVars/GenerateVar/@course.Id" class="btn-to-center u-active-palette-2-base u-border-none u-btn u-btn-round u-button-style u-hover-palette-2-light-1 u-palette-2-light-2 u-radius-5 u-btn-1">Сгенерировать вариант</a>
+                        <a href="~/TVars/CreateVar/@course.Id" class="btn-to-center u-active-palette-2-base u-border-none u-btn u-btn-round u-button-style u-hover-palette-2-light-1 u-palette-2-light-2 u-radius-5 u-btn-1">Создать вариант вручную</a>
+                      </div>
+
+
+                      <div class="tab-pane fade" id="nav-assigned-@course.Id" role="tabpanel" aria-labelledby="nav-assigned-tab-@course.Id">
+                          @if (course.assignedCount != 0)
+                        {
+                            <div class="task-list">
+                                <table style="width: 100%">
+                                    <colgroup>
+                                        <col width="10%">
+                                        <col width="50%">
+                                        <col width="20%">
+                                        <col width="20%">
+                                    </colgroup>
+                                    <tbody class="u-table-alt-palette-2-light-3">
+                                        <tr>
+                                            <td class="u-table-cell">Номер</td>
+                                            <td class="u-table-cell">Обучаемый</td>
+                                            <td class="u-table-cell">Дата</td>
+                                            <td class="u-table-cell"></td>
+                                        </tr>
+                                        @foreach (var var in Model.assignedVars)
+                                        {
+                                            @if (var.CourseId == course.Id)
+                                            {
+                                                <tr>
+                                                    <td class="u-table-cell"> <a href="~/TVars/Index/@var.VarId">@var.VarId</a></td>
+                                                    <td class="u-table-cell">@var.StudentName</td>
+                                                    <td class="u-table-cell">@var.Date.ToString("dd/MM/yyyy")</td>
+                                                    <td class="u-table-cell"><a href="~/TVars/UnassignVar/@var.Id">Отменить назначение</a></td>
+                                                </tr>
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        }
+                        else
+                        {
+                            <p class="text-to-center">На этом курсе пока не назначен ни один вариант.</p>
+                        }
+                      </div>
+
+
+                      <div class="tab-pane fade" id="nav-solved-@course.Id" role="tabpanel" aria-labelledby="nav-solved-tab-@course.Id">
+                          @if (course.solvedCount != 0)
+                        {
+                            <div class="task-list">
+                                <table style="width: 100%">
+                                    <colgroup>
+                                        <col width="10%">
+                                        <col width="20%">
+                                        <col width="20%">
+                                        <col width="15%">
+                                        <col width="15%">
+                                        <col width="15%">
+                                    </colgroup>
+                                    <tbody class="u-table-alt-palette-2-light-3">
+                                        <tr>
+                                            <td class="u-table-cell">Номер</td>
+                                            <td class="u-table-cell">Обучаемый</td>
+                                            <td class="u-table-cell">Дата</td>
+                                            <td class="u-table-cell">Время</td>
+                                            <td class="u-table-cell">Результат</td>
+
+                                            <td class="u-table-cell"></td>
+                                        </tr>
+                                        @foreach (var var in Model.solvedVars)
+                                        {
+                                            @if (var.CourseId == course.Id)
+                                            {
+                                                <tr>
+                                                    <td class="u-table-cell"> <a href="~/TVars/Index/@var.VarId">@var.VarId</a></td>
+                                                    <td class="u-table-cell">@var.StudentName</td>
+                                                    <td class="u-table-cell">@var.Date.ToString("dd/MM/yyyy")</td>
+                                                    <td class="u-table-cell">@var.time</td>
+                                                    <td class="u-table-cell">@var.mark</td>
+                                                    <td class="u-table-cell"><a href="~/TVars/SolvedVar/@var.Id">Посмотреть</a></td>
+                                                </tr>
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        }
+                        else
+                        {
+                            <p class="text-to-center">Обучаемые пока не решили ни один вариант.</p>
+                        }
+                      </div>
+                    </div>
+                }
+            }
+
+        }
+         else
+        {
+            <div style = "text-align: center;">
+                    <h2>Список вариантов</h2>
+                </div>
+            <p class="text-to-center">У вас пока нет вариантов. Чтобы создать вариант, добавьте курс.</p>
+            <a href="TCourses/CreateCourse" class="btn-to-center u-active-palette-2-base u-border-none u-btn u-btn-round u-button-style u-hover-palette-2-light-1 u-palette-2-light-2 u-radius-5 u-btn-1 button button">Создать курс</a>
+        }
+    </article>
+    <ads style="border-left: 0.5px solid #534a6a">
+        @if(Model != null)
+        {
+            @if (Model.courses != null)
+            {
+                <h5 class="right-title">Курсы</h5>
+                <ul style="list-style-type:none;">
+                    @foreach(var course in Model.courses)
+                    {
+                        <li><a href="#@course.Id">@course.Title</a></li>
+                    }
+                    </ul>
+            }
+        }
+      
+    </ads>    
+    <footer id="pageFooter" class="footer-all u-clearfix">
+        <p class="footer-text u-text-variant"> © 2022 Examcy | Образовательная платформа</p>
+    </footer>
+  </body>
+</html>

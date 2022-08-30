@@ -1,0 +1,120 @@
+﻿/*
+    Default
+*/
+.task-detail{
+    display:flex;
+    justify-content:space-between;
+}
+.task {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 35%;
+    height: 70%;
+    margin: 10px;
+}
+
+    .task #task_title {
+        font-size: 20px;
+        border-bottom: 1px solid black;
+        margin-bottom: 10px;
+    }
+
+.task-text {
+    font-size: 18px;
+}
+
+
+td {
+    border: 1px solid black;
+    width: 25px;
+    height: 20px;
+    text-align: center;
+}
+tr {
+    height: 20px;
+}
+
+.worksection{
+    display: flex;
+    position: fixed;
+
+    justify-content:center;
+    align-items:center;
+
+    min-width: 550px;
+    
+}
+
+/*
+    Main style
+*/
+.editor {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.editor-selected-object-properties {
+    background-color: #fff;
+    box-sizing: border-box;
+    padding: 10px 5px;
+}
+
+input, select {
+    /*width: 100px;
+    height: 20px;*/
+}
+
+label {
+    width: 300px;
+    display: inline-block;
+    height: 20px;
+}
+
+li {
+    line-height: 30px;
+}
+
+body, html {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.cv {
+    display: inline-block;
+    width: 512px;
+    height: 512px;
+    box-sizing: border-box;
+    border: 1px solid #000;
+}
+
+.editor-action-list {
+    color: #fff;
+}
+
+
+.control-info {
+    color: #000;
+    text-align: center;
+    height: 100%;
+    width: 512px;
+}
+
+.editor-selected-object-properties {
+    width: 512px;
+    height: 400px;
+}
+
+live-preview-root{
+    z-index: -1;
+}
+.u-btn{
+    height: 45px;
+    width: 160px
+}

@@ -1,0 +1,170 @@
+*{
+margin: 0px 0px 0px 0px;
+font-family: "Didact Gothic";
+}
+
+.courses{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  align-content: center;
+  min-height: 310px;
+}
+
+.course{
+  background-color: #cdc0ef;
+  padding: 10px 10px 10px 10px; 
+  max-width: 310px;
+  flex: inherit;
+  margin-bottom: 15px;
+  height: 100%;
+  min-height: 280px;
+  vertical-align: middle;
+}
+
+.text-to-center{
+  text-align: center;
+}
+
+.text-title{
+  text-align: left;
+  margin-top: 25px;
+  margin-bottom: 15px;
+}
+
+
+body { 
+  display: grid;
+  grid-template-areas: 
+   "header header header"
+    "article article article"   
+    "footer footer footer";
+  grid-template-rows: 60px 1fr 60px;
+  grid-template-columns: 100% 0% 0%;
+  }
+  header {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  article{
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+header, footer, article, div {
+  padding: 10px;
+}
+#pageHeader {
+  grid-area: header;
+}
+#pageFooter {
+  grid-area: footer;
+}
+#mainArticle { 
+  grid-area: article;      
+  }
+#mainNav { 
+  grid-area: nav; 
+  }
+#siteAds { 
+  grid-area: ads; 
+  }
+
+*{
+  padding: 0 0 0 0;
+  margin: 0 0 0 0;
+}
+.logo{
+  display: flex;
+}
+a.logo-text:hover{
+   color: #000000;
+   text-decoration: none;
+}
+.logo-text
+{  
+  color: #000000;
+  font-size: 1.7rem;
+  font-weight: normal;
+  margin-left: 10px;
+  padding-top: -10px;
+}
+.logo-img{
+  width: 50px; 
+  height: 50px;
+  margin-top: -5px;
+}
+.task-text{
+
+}
+
+
+.nav-all{
+  margin-left: auto;
+}
+.nav-text-item{
+  font-family: "Didact Gothic";
+  font-weight: bold;
+  font-size: 1rem;
+  padding-top: 5px;
+  color: #1a1a1a
+}
+
+.login-link{
+  display: inherit;
+  padding-top: 12px;
+  font-family: "Didact Gothic";
+  font-weight: bold;
+  font-size: 1rem;
+  text-decoration: underline;
+}
+.footer-all{
+  background-color: #534a6a;
+  display: inline-block;
+   vertical-align: middle;
+}
+.footer-text{
+   color: #ffffff;
+  text-align: center;
+  font-family: "Didact Gothic";
+  font-size: 0.875rem;
+  padding: 10px 0 0 0;
+}
+
+
+
+.btn-to-center {
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+    border-radius: 5px;
+    border: none;
+    background: none;
+}
+
+.grid-code1 {
+    display: grid;
+    grid-template-areas:
+        "h5 h5 h5"
+        "p p p";
+    grid-template-rows: 50px auto;
+    grid-template-columns: 33% 33% 33%;
+    grid-gap: 5px;
+    min-height: 200px;
+}
+
+.grid-code2 {
+    display: grid;
+    grid-template-areas:
+        "h5 h5"
+        "p p";
+    grid-template-rows: 50px auto;
+    grid-template-columns: 50% 50%;
+    grid-gap: 5px;
+    min-height: 200px;
+}
+
+.code {
+    border: 1px solid #534a6a;
+    border-radius: 10px;
+}

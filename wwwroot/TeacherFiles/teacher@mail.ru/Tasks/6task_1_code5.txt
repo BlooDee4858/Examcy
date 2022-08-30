@@ -1,0 +1,13 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+    int s, n;
+    s = 47;
+    n = 1;
+    while (s > 0) {
+        s = s – 9;
+        n = n + 4;
+    }
+    cout << n << endl; 
+}

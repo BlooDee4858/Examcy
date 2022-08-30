@@ -1,0 +1,101 @@
+﻿@model TGeneratedTaskViewModel
+<!DOCTYPE html>
+<html style="font-size: 16px;">
+ <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    
+    <meta name="page_type" content="np-template-header-footer-from-plugin">
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="/css/nicepage.css" media="screen">
+    <link rel="stylesheet" href="/css/teacher_forms_for_list_task.css" media="screen">
+    <script class="u-script" type="text/javascript" src="/js/jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="/js/nicepage.js" defer=""></script>
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Didact+Gothic:400">
+    <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Didact+Gothic:400">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    
+    <meta name="theme-color" content="#9ea400">
+    <meta property="og:type" content="website">
+  </head>
+
+
+  <body>
+      @Html.Partial("HeadTeacher")
+<article></article>
+          @if (Model != null)
+        {
+                  <article>
+
+            @if (Model.tasks != null)
+            {
+                <section>
+                    <h2 class="text-title">Заданий сгенерировано: @Model.tasks.Count</h2>
+                    <div class="task-list" style="padding-left: 0; padding-right: 0">
+                        <table style="width: 100%">
+                            <colgroup>
+                                <col width="25%">
+                                <col width="40%">
+                                <col width="35%">
+                            </colgroup>
+                            <tbody class="u-table-alt-palette-2-light-3">
+                                <tr style="border-bottom: 0.5px solid #534a6a;">
+                                    <td class="u-table-cell">Номер задания</td>
+                                    <td class="u-table-cell">Тема</td>
+                                    <td class="u-table-cell"></td>
+                                </tr>
+                                    @foreach (var task in Model.tasks)
+                                    {
+                                        <tr>
+                                            <td class="u-table-cell">@task.Id</td>
+                                            <td class="u-table-cell">@Model.themeTitle</td>
+                                            <td class="u-table-cell"><a href="#@task.Id">Посмотреть</a></td>
+                                        </tr>
+                                    }
+                            </tbody>
+                        </table>
+                    </div>
+                    <a href="/TTask/TaskList/#@Model.courseId" class="u-border-2  u-border-hover-palette-2-base u-border-palette-1-base u-btn u-button-style   u-text-hover-palette-2-base btn-to-center">К списку заданий</a>   
+                </section>
+
+                    <section>
+                            <h3>Задания</h3>
+                            <div class="u-border-2 u-border-palette-2-base u-line u-line-horizontal u-line-1"></div>
+                            @foreach (var task in Model.tasks)
+                            {
+                                    <h4><a name="@task.Id"></a>Задание №@task.Id</h4>
+                                    <h5 class="text">Тема: @Model.themeTitle</h5>
+                                    <p class="task-text">@task.Text</p>
+                                    <p class="task-text">Ответ: @task.Answer</p>
+                            }
+                    <a href="/TTasks/TaskList/#@Model.courseId" class=" btn-to-center u-border-2  u-border-hover-palette-2-base u-border-palette-1-base u-btn u-button-style   u-text-hover-palette-2-base btn-to-center">К списку заданий</a>   
+                    </section>
+
+            }
+
+    </article>
+    <ads style="border-left: 0.5px solid #534a6a">
+      <h5 class="right-title">Задания</h5>
+      <ul style="list-style-type:none;">
+      @if(Model.tasks != null)
+            {
+                @foreach(var task in Model.tasks)
+                {
+                    <li><a href="#@task.Id">Задание №@task.Id</a></li>
+                }
+            }
+      </ul>
+    </ads>    
+            }
+
+    <footer id="pageFooter" class="footer-all u-clearfix">
+        <p class="footer-text u-text-variant"> © 2022 Examcy | Образовательная платформа</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,51 @@
+﻿@model TStatViewModel
+<!DOCTYPE html>
+<html style="font-size: 16px;">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    
+    <meta name="page_type" content="np-template-header-footer-from-plugin">
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="/css/nicepage.css" media="screen">
+    <link rel="stylesheet" href="/css/student_stat.css" media="screen">
+    <script class="u-script" type="text/javascript" src="/js/jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="/js/nicepage.js" defer=""></script>
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Didact+Gothic:400">
+    <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Didact+Gothic:400">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    
+    <meta name="theme-color" content="#9ea400">
+    <meta property="og:type" content="website">
+  </head>
+
+
+<body>
+@Html.Partial("HeadTeacher")
+<article style="margin: 0 0 0 0; padding: 0 0 0 0;">
+    <h2 class="text-title">Статистика</h2>
+    @if (Model != null) {
+       <section>
+          <iframe title="преподаватель_v2 - Темы" align="middle" height="100%"  width="100%" src="https://app.powerbi.com/view?r=eyJrIjoiMWM3NzA3ZjgtMjEwYy00NzNhLWJhZDMtYzQxYmYzM2NmZjkyIiwidCI6ImYwZWYwMzIxLWY1YTQtNDZmNi04MWEzLTI2M2NhYWNkZjk3NCIsImMiOjl9" frameborder="0" allowFullScreen="true"></iframe>
+     </section>
+    }
+    else 
+    {
+        <p class="text-to-center">У вас пока нет статистки. Чтобы она появилась, добавьте курс.</p>
+        <a href="TCourses/CreateCourse" class="btn-to-center u-active-palette-2-base u-border-none u-btn u-btn-round u-button-style u-hover-palette-2-light-1 u-palette-2-light-2 u-radius-5 u-btn-1 button button">Создать курс</a>
+    }
+</article>
+<article  style="margin: 0 0 0 0; padding: 0 0 0 0;"></article>
+<article  style="margin: 0 0 0 0; padding: 0 0 0 0;"></article>
+
+  <footer id="pageFooter" class="footer-all u-clearfix">
+    <p class="footer-text u-text-variant"> © 2022 Examcy | Образовательная платформа</p>
+  </footer>
+</body>
+</html>

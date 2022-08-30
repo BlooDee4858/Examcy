@@ -1,0 +1,12 @@
+DIM X, A, B AS INTEGER
+ INPUT X
+ A=0: B=0
+ WHILE X > 0
+    A = A+1
+    IF B < (X MOD 8) THEN
+        B = X MOD 8
+    END IF
+    X = X \ 8
+ WEND
+ PRINT A
+ PRINT B

@@ -1,0 +1,153 @@
+﻿@model StMyCourseViewModel
+<!DOCTYPE html>
+<html style="font-size: 16px;">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    
+    <meta name="page_type" content="np-template-header-footer-from-plugin">
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="/css/nicepage.css" media="screen">
+    <link rel="stylesheet" href="/css/student_onecourse.css" media="screen">
+    <script class="u-script" type="text/javascript" src="/js/jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="/js/nicepage.js" defer=""></script>
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Didact+Gothic:400">
+    <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Didact+Gothic:400">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    
+    <meta name="theme-color" content="#9ea400">
+    <meta property="og:type" content="website">
+  </head>
+
+  <body class="u-body u-xl-mode">
+
+@Html.Partial("HeadStudent")
+@if (Model != null) {
+        @if (Model.course != null)
+        {
+            <article></article>
+            <article>
+                <section>
+                    <h2 class="text-title">@Model.course.Title</h2>
+                    @if(Model.themes != null)
+                    {
+                        @if (Model.themes.Count() > 0)
+                        {
+                            foreach (var theme in Model.themes)
+                            {
+                                <section class="theme-all" style="margin: 0 0 0 0;">
+                                    <div style="margin: 0 0 0 0; padding: 0 0 0 0;">
+                                    <h3>@theme.Title</h3>
+                                    <div class="text">
+                                        <a name="@theme.Id"></a>
+                                        <p class="theme-text u-text-variant">@theme.Text</p>
+                                        <a href="~/StTheme/Index/@theme.Id" class="u-active-palette-2-base u-border-none u-btn u-btn-round u-buu-active-palette-2-base u-border-none u-btn u-btn-round u-button-style u-hover-palette-2-light-1 u-palette-2-light-2 u-radius-5 u-btn-1">Изучать</a>
+                                    </div> 
+                                    </div> 
+                                    <div>
+                                    <h3>Задания</h3>
+                                    <div class="text">
+                                        @if (Model.tasks != null)
+                                        {
+                                            @if (Model.tasks.Count() > 0)
+                                            {
+                                                <ul class="task-list u-unstyled u-text-variant theme-text">
+                                                    @foreach (var task in Model.tasks)
+                                                    {
+                                                            @if (task.ThemeId == theme.Id)
+                                                            {
+                                                                <li><a href="~/StTasks/Index/@task.Id">Задание №@task.Id</a></li>
+                                                            }
+                                                        }
+                                                </ul>
+                                            }
+                                            else
+                                            {
+                                                <p>Заданий пока нет.</p>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <p>Заданий пока нет.</p>
+                                        }
+                                     </div>
+                                    </div>
+                                </section>
+                            }
+                        }
+                    }
+                    else
+                    {
+                        <p class="text-to-center">Тем нет.</p>       
+                    }
+
+                    <h3><a name="var"></a>Варианты</h3>
+                        @if (Model.vars != null)
+                        {
+                            <ul class="task-list u-unstyled u-text-variant theme-text">
+                                @foreach(var v in Model.vars)
+                                {
+                                    <li><a href="~/StVar/AssignedVar/@v.Id">Вариант №@v.Id</a></li>
+                                }
+                            </ul>
+                                
+                        }
+                        else
+                        {
+                            <p>Вариантов пока нет.</p>
+                        }
+
+                        <h3><a name="review"></a>Отзыв</h3>
+                        @if (Model.review != null)
+                        {
+                        @if (Model.review.flag)
+                        {
+                            <a href="~/StMyCourse/Review/@Model.review.Id" class="u-active-palette-2-base u-border-none u-btn u-btn-round u-buu-active-palette-2-base u-border-none u-btn u-btn-round u-button-style u-hover-palette-2-light-1 u-palette-2-light-2 u-radius-5 u-btn-1">Оставить отзыв</a>
+                        }
+                        else
+                        {
+                            <p>Пройдите @Model.review.lost тем чтобы оставить отзыв о курсе.</p>
+                        }
+                    }
+                            
+                </section>
+
+            </article>
+        }
+
+    }
+
+    <ads style="border-left: 0.5px solid #534a6a">
+      <h5 class="right-title">Курс</h5>
+      <ul style="list-style-type:none;">
+            @if (Model != null)
+            {
+                @if(Model.themes != null)
+                {
+                    @if (Model.themes.Count() > 0)
+                    {
+                        
+                        foreach(var t in Model.themes)
+                        {
+                            <li><a href="#@t.Id">Тема @t.TypeId</a></li>
+                        }
+                    }
+                }
+                
+                <li><a href="#var">Варианты</a></li>
+                <li><a href="#review">Отзыв</a></li>
+            }
+      </ul>
+
+    </ads>
+    <footer id="pageFooter" class="footer-all u-clearfix">
+    <p class="footer-text u-text-variant"> © 2022 Examcy | Образовательная платформа</p>
+  </footer>
+  </body>
+</html>

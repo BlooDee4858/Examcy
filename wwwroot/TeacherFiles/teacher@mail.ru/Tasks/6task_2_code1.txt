@@ -1,0 +1,8 @@
+DIM S, N AS INTEGER
+ S = 42
+ N = 1
+ WHILE S > 0
+S = S – 5
+N = N + 3
+ WEND
+ PRINT(N)

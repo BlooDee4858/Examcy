@@ -1,0 +1,96 @@
+﻿@model StThemeViewModel
+<!DOCTYPE html>
+<html style="font-size: 16px;">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    
+    <meta name="page_type" content="np-template-header-footer-from-plugin">
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="/css/nicepage.css" media="screen">
+    <link rel="stylesheet" href="/css/student_theme.css" media="screen">
+    <script class="u-script" type="text/javascript" src="/js/jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="/js/nicepage.js" defer=""></script>
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Didact+Gothic:400">
+    <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Didact+Gothic:400">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    
+    <meta name="theme-color" content="#9ea400">
+    <meta property="og:type" content="website">
+  </head>
+
+  <body class="u-body u-xl-mode">
+      @Html.Partial("HeadStudent")      
+      <article></article>
+      <article>
+          @if (Model != null)
+        {
+            @if (Model.theme != null)
+            {
+                <section>
+                    <h2 class="text-title">@Model.theme.Title</h2>
+                    <h3><a name="c1"></a>Теория</h3>
+                    <p class="theme-text u-text-variant">@Model.theme.Text</p>
+
+                    <h3><a name="c2"></a>Задания</h3>
+                    @*                    <div class="text" style="display: flex;">
+                        <p style="margin-top: 0px; margin-bottom: 0px; margin-right: 10px;">Введите количество заданий:</p>
+                        <input type="number" name="taskCount" min="1" max="100" value="1" placeholder="Введите количество заданий">
+                        </div>
+                        <a href="#" class="u-active-palette-2-base u-border-none u-btn u-btn-round u-button-style u-hover-palette-2-light-1 u-palette-2-light-2 u-radius-5 u-btn-1" style="margin-top: 0px;">Решать</a>
+                        <div class="u-border-2 u-border-palette-2-base u-line u-line-horizontal u-line-1"></div>
+                    *@
+                    @if (Model.tasks != null)
+                    {
+                        <ul class="task-list u-unstyled u-text-variant theme-text">
+                            @foreach (var task in Model.tasks)
+                            {
+                                <li><a href="~/StTasks/Index/@task.Id">Задание №@task.Id</a></li>
+                            }
+                        </ul>
+
+                    }
+                    else
+                    {
+                        <p>Заданий пока нет.</p>
+                    }
+
+                    <h3><a name="c4"></a>Дополнительно</h3>
+                    @if (Model.theme.OtherText != null)
+                    {
+                        <p class="theme-text u-text-variant">@Model.theme.OtherText</p>
+                        @if (Model.flag)
+                        {
+                            <p style="text-align:center">
+                            <a target="_blank" href="@Model.theme.Path" download="">Скачать файл</a>
+                            </p>
+                        }
+                    }
+                    else
+                    {
+                        <p>К этой теме нет дополнительных материалов.</p>
+                    }
+                </section>
+        }
+        }
+    </article>
+
+    <ads style="border-left: 0.5px solid #534a6a">
+      <h5 class="right-title">Структура темы</h5>
+      <ul style="list-style-type:none;">
+        <li><a href="#c1">Теория</a></li>
+        <li><a href="#c2">Задания</a></li>
+        <li><a href="#c4">Дополнительно</a></li>
+      </ul>
+    </ads>
+    <footer id="pageFooter" class="footer-all u-clearfix">
+    <p class="footer-text u-text-variant"> © 2022 Examcy | Образовательная платформа</p>
+  </footer>
+  </body>
+</html>

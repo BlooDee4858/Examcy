@@ -1,0 +1,349 @@
+*{
+    margin: 0px 0px 0px 0px;
+    font-family: "Didact Gothic";
+    }
+        
+    .courses{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      align-content: center;
+      min-height: 310px;
+    }
+        
+    .course{
+      background-color: #cdc0ef;
+      padding: 10px 10px 10px 10px; 
+      max-width: 310px;
+      flex: inherit;
+      margin-bottom: 15px;
+      height: 100%;
+      min-height: 280px;
+      vertical-align: middle;
+    }
+    
+    .text-to-center{
+      text-align: center;
+    }
+
+.Title__ {
+    display: flex;
+    justify-content: center;
+    text-align:center;
+}
+
+.text-title {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+    
+    body { 
+      display: grid;
+      grid-template-areas: 
+       "header header header"
+        "article article article"   
+        "footer footer footer";
+      grid-template-rows: 60px 1fr 60px;
+      grid-template-columns: 0% 100% 0%;
+    }
+    header {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+    article {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+    header, footer, article, div {
+      padding: 10px;
+    }
+    .theme {
+      display: flex;
+      align-items: center;
+      margin-left: 5%;
+    }
+    .button{
+      display: flex;
+      justify-content: right;
+      margin-right: 3%;
+    }
+
+.btn{
+    display: flex;
+    justify-content: center;
+}
+
+.CrCour_rad{
+    margin-left:15%;
+}
+.TcCreateCourse_name, .TcCreateCourse_info {
+    display: flex;
+    justify-content: left;
+}
+
+.TcCreateCourse_name_p, .TcCreateCourse_info_p {
+    margin-left: 3%;
+    /*display: flex !important;*/
+    /* justify-content: space-between!important; */
+    font-size: 14;
+    width:100px;
+   
+}
+.TcCreateCourse_name_input, .TcCreateCourse_info_text {
+    margin-left: 3%;
+    border-radius: 3px;
+    width:auto;
+}
+
+.btn-to-center {
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+    display: flex;
+    justify-content: center;
+}
+
+/* Устроства с маленьким экраном (планшеты, 768px и выше) */
+@media (min-width: 768px) {
+    /* Стили для устройств с шириной viewport, находящейся в диапазоне 768px - 991px */
+    .TcCreateCourse_name_input {
+        margin-left: 3.5%;
+        border-radius: 3px;
+        width: 80%;
+    }
+    .TcCreateCourse_info_text {
+        margin-left: 3% !important;
+        border-radius: 3px;
+        width: 80%;
+    }
+}
+
+/* Устройства со средним экраном (ноутбуки и компьютеры, 992px и выше) */
+@media (min-width: 992px) {
+    /* Стили для устройств с шириной viewport, находящейся в диапазоне 992px - 1199px */
+    .TcCreateCourse_name_input {
+        margin-left: 3.5%;
+        border-radius: 3px;
+        width: 80%;
+    }
+
+    .TcCreateCourse_info_text {
+        margin-left: 3% !important;
+        border-radius: 3px;
+        width: 80%;
+    }
+
+    /* Устройства с большим экраном (компьютеры, 1200px и выше) */
+    @media (min-width: 1200px) {
+        /* Стили для устройств с шириной viewport >1200px */
+        .TcCreateCourse_name_input {
+            margin-left: 3.5%;
+            border-radius: 3px;
+            width: 1040px;
+        }
+
+        .TcCreateCourse_info_text {
+            margin-left: 3% !important;
+            border-radius: 3px;
+            width: 1000px;
+        }
+    }
+
+    .TcCreateCourse_themes_sel {
+        display: flex !important;
+        justify-content: left !important;
+        margin-left: 3%;
+    }
+
+    .TcCreateCourse_themes__sel {
+        width: auto;
+        border: 0;
+        margin-left: 8%;
+        border-radius: 5px;
+        background-color: #fdfee7;
+    }
+
+    @media (min-width: 768px) {
+        /* Стили для устройств с шириной viewport, находящейся в диапазоне 768px - 991px */
+        .TcCreateCourse_themes__sel {
+            width: 500px;
+            border: 0;
+            margin-left: 8%;
+            border-radius: 5px;
+            background-color: #fdfee7;
+        }
+    }
+
+    /* Устройства со средним экраном (ноутбуки и компьютеры, 992px и выше) */
+    @media (min-width: 992px) {
+        /* Стили для устройств с шириной viewport, находящейся в диапазоне 992px - 1199px */
+        .TcCreateCourse_themes__sel {
+            width: 700px;
+            border: 0;
+            margin-left: 8%;
+            border-radius: 5px;
+            background-color: #fdfee7;
+        }
+    }
+
+    /* Устройства с большим экраном (компьютеры, 1200px и выше) */
+    @media (min-width: 1200px) {
+        /* Стили для устройств с шириной viewport >1200px */
+        .TcCreateCourse_themes__sel {
+            width: 1000px;
+            border: 0;
+            margin-left: 8%;
+            border-radius: 5px;
+            background-color: #fdfee7;
+        }
+    }
+
+
+    .TcCreateCourse_themes_title {
+        display: flex !important;
+        justify-content: left !important;
+        margin-left: 9%;
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+    /* .TcCreateCourse_themes_p {
+    margin-left: 5%;
+} */
+
+    .TcCreateCourse_theme_sel_1 {
+        width: auto;
+        border: 0;
+        background-color: #fdfee7;
+    }
+
+    .TcCreateCourse_theme_sel_2 {
+        width: auto;
+        border: 0;
+    }
+
+    .TcCreateCourse_q_add_th_sel {
+        width: auto;
+        border: 0;
+        background-color: #fdfee7;
+        margin-left: 5%;
+    }
+
+    .TcCreateCourse_q_add_th {
+        display: flex !important;
+        justify-content: left !important;
+    }
+
+    .TcCreateCourse_q_add {
+        border: 3px solid #9ea400;
+        border-radius: 7px;
+        margin-left: 3%;
+        margin-right: 7%;
+    }
+
+    .TcCreateCourse_q_title {
+        margin-left: 3%;
+    }
+
+    .TcCreateCourse_q_text {
+        /* display: flex;
+    justify-content: left; */
+    }
+
+    .TcCreateCourse_q_text_p, .TcCreateCourse_a_p {
+        /* margin-left: 3% !important; */
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+    }
+
+
+    .TcCreateCourse_q_text_p {
+        /* margin-left: 3%; */
+        display: flex;
+        font-size: 14;
+    }
+
+    .TcCreateCourse_q_text_input {
+        border: 3;
+        margin-left: 5%;
+        border-radius: 5px;
+    }
+
+    .TcCreateCourse_a {
+    }
+
+    .TcCreateCourse_a_p {
+        /* margin-left: 3%; */
+        display: flex;
+        /* justify-content: space-between!important; */
+        font-size: 14;
+    }
+
+    .TcCreateCourse_a_input {
+        border: 1;
+        margin-left: 5%;
+        border-radius: 5px;
+    }
+
+
+
+
+
+    .logo {
+        display: flex;
+    }
+
+    a.logo-text:hover {
+        color: #000000;
+        text-decoration: none;
+    }
+
+    .logo-text {
+        color: #000000;
+        font-size: 1.7rem;
+        margin-left: 10px;
+        padding-top: -15px;
+    }
+
+    .logo-img {
+        width: 50px;
+        height: 50px;
+        margin-top: -5px;
+    }
+
+    .nav-all {
+        margin-left: auto;
+    }
+
+    .nav-text-item {
+        font-family: "Didact Gothic";
+        font-weight: bold;
+        font-size: 1rem;
+        padding-top: 5px;
+    }
+
+    .login-link {
+        display: inherit;
+        padding-top: 12px;
+        font-family: "Didact Gothic";
+        font-weight: bold;
+        font-size: 1rem;
+        text-decoration: underline;
+        padding-top: 10px;
+    }
+
+    .footer-all {
+        background-color: #534a6a;
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .footer-text {
+        color: #ffffff;
+        text-align: center;
+        font-family: "Didact Gothic";
+        font-size: 0.875rem;
+        padding: 10px 0 0 0;
+    }
+

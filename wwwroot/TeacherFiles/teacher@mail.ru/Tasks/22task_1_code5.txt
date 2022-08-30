@@ -1,0 +1,10 @@
+x = int(input())
+a = 0
+b = 0
+while x > 0:
+    a += 1
+    if (b < (x % 8)):
+        b =x % 8
+    x //=  8
+print(a)
+print(b)

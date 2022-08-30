@@ -1,0 +1,8 @@
+DIM S, N AS INTEGER
+ S = 47
+ N = 1
+ WHILE S > 0
+S = S - 9
+N = N + 4
+ WEND
+ PRINT(N)

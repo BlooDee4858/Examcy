@@ -1,0 +1,100 @@
+﻿@model StTasksViewModel
+<!DOCTYPE html>
+<html style="font-size: 16px;">
+ <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    
+    <meta name="page_type" content="np-template-header-footer-from-plugin">
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="/css/nicepage.css" media="screen">
+    <link rel="stylesheet" href="/css/student_task.css" media="screen">
+    <script class="u-script" type="text/javascript" src="/js/jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="/js/nicepage.js" defer=""></script>
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Didact+Gothic:400">
+    <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Didact+Gothic:400">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    
+    <meta name="theme-color" content="#9ea400">
+    <meta property="og:type" content="website">
+  </head>
+
+
+  <body>
+      @Html.Partial("HeadStudent")
+    <article>
+        @if(Model != null)
+        {
+            @if(Model.task != null)
+            {
+                @using (Html.BeginForm("SolveTask", "StTasks", FormMethod.Post))
+                {
+                <h3>Задание №@Model.task.Id</h3>
+                <input type="hidden" value="@Model.task.Id" name="taskId">
+                <input type="hidden" value="@Model.startTime" name="StartTime">
+                <h4>Тема: @Model.task.ThemeTitle</h4>
+                <div class="u-border-2 u-border-palette-2-base u-line u-line-horizontal u-line-1"></div>
+                <p class="task-text">@Model.task.Text</p>
+                @if (@Model.content && Model.task.pattern != null)
+                {
+                    @if (Model.task.pattern._code)
+                    {
+                       <div class="grid-code1" style="margin: 0 0 0 0; padding: 0 0 0 0;">
+                            <h5 style="text-align:center;">Бейсик</h5>
+                            <h5 style="text-align:center;">Python</h5>
+                            <h5 style="text-align:center;">Паскаль</h5>
+                            <textarea readonly style="width: 100%; height:auto;">@Model.task.pattern.codeText[0]</textarea>
+
+                            <textarea readonly style="width: 100%; height:auto;">@Model.task.pattern.codeText[1]</textarea>
+
+                            <textarea readonly style="width: 100%; height:auto;">@Model.task.pattern.codeText[2]</textarea>
+                        </div>
+                        <div class="grid-code2" style="margin: 0 0 0 0; padding: 0 0 0 0;">
+                            <h5 style="text-align:center;">Алгоритмический язык</h5>
+                            <h5 style="text-align:center;">Си++</h5>
+                            <textarea readonly style="width: 100%; height:auto;">@Model.task.pattern.codeText[3]</textarea>
+
+                            <textarea readonly style="width: 100%; height:auto;">@Model.task.pattern.codeText[4]</textarea>
+                        </div>
+                    }
+                    @if (Model.task.pattern.files != null)
+                    {
+                        @foreach (var file in Model.task.pattern.files)
+                        {
+                            @if (file.Type == "img")
+                            {
+                                <p style="text-align:center;">
+                                    <img src="@file.Path" style="height:300px;">
+                                    </p>
+                            }
+                            if (file.Type == "file")
+                            {
+                                <p class="text-to-center" ><a target="_blank" href="@file.Path" download="">Скачать файл</a></p>
+                            }
+                        }
+                    }
+                    }
+
+                    <div style="margin: 0 0 0 0;">
+                     <input type="text" name="Answer"> 
+                     <input type="hidden" name="StartTime" value="@Model.startTime">
+                     <input type="hidden" name="TaskID" value="@Model.task.Id">
+                     <input type="hidden" name="AssignedTaskID" value="@Model.isAssigned">
+                     </div>
+                    <input type="submit" value="Отправить" asp-controller="StTasks" asp-action="SolveTask" class="btn-to-center u-active-palette-2-base u-border-none u-btn u-btn-round u-button-style u-hover-palette-2-light-1 u-palette-2-light-2 u-radius-5 u-btn-1">
+                }
+            }
+        }
+    </article>
+
+    <footer id="pageFooter" class="footer-all u-clearfix">
+    <p class="footer-text u-text-variant"> © 2022 Examcy | Образовательная платформа</p>
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,14 @@
+var x, a, b: integer;
+    begin
+    readln(x);
+    a:=0; b:=0;
+    while x>0 do
+        begin
+            a:=a + 1;
+            if b < (x mod 8)
+            then
+                b:=x mod 8;
+            x:=x div 8;
+        end;
+    writeln(a); write(b);
+end.

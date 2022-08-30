@@ -1,0 +1,78 @@
+﻿@model TAssignTaskViewModel
+<!DOCTYPE html>
+<html style="font-size: 16px;">
+ <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    
+    <meta name="page_type" content="np-template-header-footer-from-plugin">
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="/css/nicepage.css" media="screen">
+    <link rel="stylesheet" href="/css/teacher_forms_for_edit_task.css" media="screen">
+    <script class="u-script" type="text/javascript" src="/js/jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="/js/nicepage.js" defer=""></script>
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Didact+Gothic:400">
+    <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Didact+Gothic:400">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    
+    <meta name="theme-color" content="#9ea400">
+    <meta property="og:type" content="website">
+  </head>
+
+
+  <body>
+      @Html.Partial("HeadTeacher")
+    <article>
+        @if(Model != null)
+        {
+                @if (Model.students != null && Model.groups != null) 
+                {
+                    @using (Html.BeginForm("AssignTask", "TTasks", FormMethod.Post))
+                {
+                     <h2 class="text-title">Назначить задание</h2>
+                     <h5>Выберите группы и/или студентов, которым хотите назначить это задание.</h5>
+                     <div class="u-border-2 u-border-palette-2-base u-line u-line-horizontal u-line-1"></div>
+                     <input type="hidden" value="@Model.task" name="taskId">
+                     <div class="grid-all">
+                         <p class="text-for-form">Группы:</p>
+                         <select multiple name="groupId">
+                             @foreach(var group in Model.groups)
+                            {
+                                <option value="@group.Id">@group.Title</option>
+                            }
+                         </select>
+                     </div>
+
+                     <div class="grid-all">
+                         <p class="text-for-form">Студенты:</p>
+                         <select multiple name="studentId">
+                             @foreach(var student in Model.students)
+                            {
+                                <option value="@student.Id">@student.LastName @student.FirstName</option>
+                            }
+                         </select>
+                     </div>
+
+
+                    <div class="grid-all">
+                        <p class="text-for-form">Выполнить до:</p>
+                        <input type="date" value="@DateTime.Now" name="date">
+                    </div>
+                    <input type="submit" value="Назначить" asp-controller="TTasks" asp-action="AssignTask" class=" btn-to-center u-active-palette-2-base u-border-none u-btn u-btn-round u-button-style u-hover-palette-2-light-1 u-palette-2-light-2 u-radius-5 u-btn-1">
+               }
+              
+            }
+        }
+    </article>
+    
+    <footer id="pageFooter" class="footer-all u-clearfix">
+        <p class="footer-text u-text-variant"> © 2022 Examcy | Образовательная платформа</p>
+    </footer>
+  </body>
+</html>

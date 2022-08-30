@@ -1,0 +1,84 @@
+﻿@model TSetsViewModel
+<!DOCTYPE html>
+<html style="font-size: 16px;">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    
+    <meta name="page_type" content="np-template-header-footer-from-plugin">
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="/css/nicepage.css" media="screen">
+    <link rel="stylesheet" href="/css/student_settings.css" media="screen">
+    <script class="u-script" type="text/javascript" src="/js/jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="/js/nicepage.js" defer=""></script>
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Didact+Gothic:400">
+    <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Didact+Gothic:400">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    
+    <meta name="theme-color" content="#9ea400">
+    <meta property="og:type" content="website">
+  </head>
+
+
+<body>
+@Html.Partial("HeadTeacher")
+@if (Model != null)
+    {
+        @if (Model != null)
+        {
+            <article>
+                <section>
+                    <div style="display: flex">
+                        <h2 class="text-title">Личный кабинет преподавателя</h2>
+                        <a asp-controller="Account" asp-action="Logout" class="a_1 u-active-palette-2-base u-border-none u-btn u-btn-round u-button-style u-hover-palette-2-light-1 u-palette-2-light-2 u-radius-5 u-btn-1" style="margin-right: 0; margin-left: auto; margin-top: 35px">Выйти</a>
+                    </div>
+                    @using (Html.BeginForm("EditTeacher", "TSets", FormMethod.Post))
+                    {
+                            <input type="hidden" name="MyId" value="@Model.Id">
+
+                            <div style="display: flex;">
+                                <p class="without-padding" style="margin: 0 0 0 0; padding-top: 0; padding-bottom: 0;
+              padding-right: 15px" for="LastName">Фамилия:</p> 
+                                <input style="padding-left: 10px; width: 300px;" required type="text" name="LastName" value="@Model.LastName">
+                            </div>
+
+                            <div style="display: flex;">
+                                <p class="without-padding" style="margin: 0 0 0 0; padding-top: 0; padding-bottom: 0;
+              padding-right: 60px" for="FirstName">Имя:</p> 
+                                <input style="padding-left: 10px; width: 300px;" required  type="text" name="FirstName" value="@Model.FirstName">
+                            </div>
+
+                            <div style="display: flex;">
+                                <p class="without-padding" style="margin: 0 0 0 0; padding-top: 0; padding-bottom: 0;
+              padding-right: 42px" for="User.Login">E-mail:</p> 
+                                <input style="padding-left: 10px; width: 300px;" required  type="email" name="Login" value="@Model.Login">
+
+                            </div>
+
+                            <div style="display: flex;">
+                                <p class="without-padding" style="margin: 0 0 0 0; padding-top: 0; padding-bottom: 0;
+              padding-right: 30px" for="User.Password">Пароль:</p> 
+                               <input style="padding-left: 10px; width: 300px;" type="text" name="Password" placeholder="Для изменения пароля, введите новый"></div>
+                            <input type="submit" value="Сохранить" asp-controller="TSets" asp-action="EditTeacher" class="u-active-palette-2-base u-border-none u-btn u-btn-round u-button-style u-hover-palette-2-light-1 u-palette-2-light-2 u-radius-5 u-btn-1" style="margin-left: 10px; margin-top: 40px;">
+                    }
+                </section>
+            </article>
+            <article></article>
+            <article></article>
+        }
+
+    }
+
+  <footer id="pageFooter" class="footer-all u-clearfix">
+    <p class="footer-text u-text-variant"> © 2022 Examcy | Образовательная платформа</p>
+  </footer>
+</body>
+
+</html>
+

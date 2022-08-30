@@ -1,0 +1,151 @@
+﻿@model TUpdateVarViewModel
+<!DOCTYPE html>
+<html style="font-size: 16px;">
+ <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    
+    <meta name="page_type" content="np-template-header-footer-from-plugin">
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="/css/nicepage.css" media="screen">
+    <link rel="stylesheet" href="/css/teacher_added_var.css" media="screen">
+    <script class="u-script" type="text/javascript" src="/js/jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="/js/nicepage.js" defer=""></script>
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Didact+Gothic:400">
+    <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Didact+Gothic:400">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    
+    <meta name="theme-color" content="#9ea400">
+    <meta property="og:type" content="website">
+  </head>
+
+
+  <body>
+      @Html.Partial("HeadTeacher")
+      <article></article>
+          @if (Model != null)
+    {
+        <article>
+            @if (Model.tasks != null)
+            {
+                <section>
+                    <h2 class="text-title">Вариант @Model.VarId</h2>
+                    <div class="task-list" style="padding-left: 0; padding-right: 0">
+                        <table style="width: 100%">
+                            <colgroup>
+                                <col width="5%">
+                                <col width="5%">
+                                <col width="50%">
+                                <col width="20%">
+                                <col width="20%">
+                            </colgroup>
+                            <tbody class="u-table-alt-palette-2-light-3">
+                                <tr style="border-bottom: 0.5px solid #534a6a;">
+                                    <td class="u-table-cell">№ ЕГЭ</td>
+                                    <td class="u-table-cell">№</td>
+                                    <td class="u-table-cell">Тема</td>
+                                    <td class="u-table-cell"></td>
+                                    <td class="u-table-cell"></td>
+                                </tr>
+                                @foreach (var t in Model.tasks)
+                                {
+                                    <tr>
+                                        <td class="u-table-cell">@t.numberTaskInVar</td>
+                                        <td class="u-table-cell">@t.TaskId</td>
+                                        <td class="u-table-cell">@t.Task.ThemeTitle</td>
+                                        <td class="u-table-cell"><a href="#@t.Id">Посмотреть</a></td>
+                                        <td class="u-table-cell"><a href="/TVars/ChangeTask/@t.Id">Изменить</a></td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <a href="/TVars/VarList" class="btn-to-center u-active-palette-2-base u-border-none u-btn u-btn-round u-button-style u-hover-palette-2-light-1 u-palette-2-light-2 u-radius-5 u-btn-1 button">К списку вариантов</a>   
+                </section>
+                <section>
+                    <h3>Вариант №@Model.VarId</h3>
+                    <div class="u-border-2 u-border-palette-2-base u-line u-line-horizontal u-line-1"></div>
+                    @foreach (var t in Model.tasks)
+                    {
+                        <h4><a name="@t.Id"></a>@t.numberTaskInVar) Задание №@t.TaskId</h4>
+                        <h5 class="text">Тема: @t.Task.ThemeTitle</h5>
+                        <p class="task-text">@t.Task.Text</p>
+                        if (t.Task.pattern != null)
+                        {
+                            @if (t.Task.pattern._code)
+                            {
+                                <div class="grid-code1" style="margin: 0 0 0 0; padding: 0 0 0 0;">
+                                    <h5 style="text-align:center;">Бейсик</h5>
+                                    <h5 style="text-align:center;">Python</h5>
+                                    <h5 style="text-align:center;">Паскаль</h5>
+                                    <textarea readonly style="width: 100%; height:auto;">@t.Task.pattern.codeText[0]</textarea>
+
+                                    <textarea readonly style="width: 100%; height:auto;">@t.Task.pattern.codeText[1]</textarea>
+
+                                    <textarea readonly style="width: 100%; height:auto;">@t.Task.pattern.codeText[2]</textarea>
+                                </div>
+                                <div class="grid-code2" style="margin: 0 0 0 0; padding: 0 0 0 0;">
+                                    <h5 style="text-align:center;">Алгоритмический язык</h5>
+                            <h5 style="text-align:center;">Си++</h5>
+                            <textarea readonly style="width: 100%; height:auto;">@t.Task.pattern.codeText[3]</textarea>
+
+                            <textarea readonly style="width: 100%; height:auto;">@t.Task.pattern.codeText[4]</textarea>
+                        </div>
+
+                        }
+                       
+                        @if (t.Task.pattern.files != null)
+                        {
+                            @foreach (var file in t.Task.pattern.files)
+                            {
+                                @if (file.Type == "img")
+                                {
+                                   <p style="text-align:center;">
+                                    <img src="@file.Path" style="height:300px;">
+                                    </p>
+                                }
+                                if (file.Type == "file")
+                                {
+                                    <p class="text-to-center" ><a target="_blank" href="@file.Path" download="">Скачать файл</a></p>
+                                }
+                            }
+                        }
+                        }
+                        <h5>Решение:</h5>
+                        <p class="task-text">@t.Task.Solution</p>
+                        <h5>Ответ: @t.Task.Answer</h5>
+                        <a href="/TVars/ChangeTask/@t.Id" class="btn-to-center u-active-palette-2-base u-border-none u-btn u-btn-round u-button-style u-hover-palette-2-light-1 u-palette-2-light-2 u-radius-5 u-btn-1 button">Изменить</a>
+                    }
+                    <a href="/TVars/VarList" class="btn-to-center u-active-palette-2-base u-border-none u-btn u-btn-round u-button-style u-hover-palette-2-light-1 u-palette-2-light-2 u-radius-5 u-btn-1 button">К списку вариантов</a>   
+                </section>
+            }
+
+    </article>
+    }
+    <ads style="border-left: 0.5px solid #534a6a">
+      <h5 class="right-title">Задания</h5>
+      <ul style="list-style-type:none;">
+            @if (Model != null)
+            {
+                @if (Model.tasks != null)
+                {
+                    @foreach (var task in Model.tasks)
+                    {
+                        <li><a href="#@task.Id">Задание №@task.numberTaskInVar</a></li>
+                    }
+                }
+          }
+      </ul>
+    </ads>    
+
+    <footer id="pageFooter" class="footer-all u-clearfix">
+        <p class="footer-text u-text-variant"> © 2022 Examcy | Образовательная платформа</p>
+    </footer>
+  </body>
+</html>
